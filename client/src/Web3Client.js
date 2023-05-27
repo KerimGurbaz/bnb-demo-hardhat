@@ -18,11 +18,21 @@ export const init = async()=>{
         }).catch((err)=>{
             //console.log(err);
             return;
-        })
+        });
     }
 
     window.ethereum.on("accountChanged", function(accounts){
         selectedAccount=accounts[0];
-    })
+    });
+
+    const web3 = new Web3(provider);
+    const networkId = await web3.eth.net.getId();
+    renterContract = new web3.eth.Contract(RenterABI.abi, renterContractAddress);
+    isInitialized = true;
+
+
+
 }
+
+
 
