@@ -30,12 +30,6 @@ export const init = async()=>{
     renterContract = new web3.eth.Contract(RenterABI.abi, renterContractAddress);
     isInitialized = true;
 
-
-    const web3 = new Web3(provider);
-    const networkId = await web3.eth.net.getId();
-    renterContract = new web3.eth.Contract(RenterABI.abi, renterContractAddress);
-    isInitialized = true;
-
 }
 
 

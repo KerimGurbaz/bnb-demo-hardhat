@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.0",
-    "solc": "^0.8.7"
+    "react": "^18.2.0",
+    "solc": "^0.8.7",
+    "web3": "^1.10.0"
   }
 }
