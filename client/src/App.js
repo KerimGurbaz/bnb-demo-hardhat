@@ -23,7 +23,7 @@ const CarRentalPlatformFrontend = () => {
     const register = async (e) => {
         e.preventDefault();
         try {
-            await window.ethereum.enable(); // request account access
+            await window.ethereum.enable(); //  request account access
             await loadBlockchainData();
             await carRentalPlatform.methods.addUser(name, surname).send({ from: account });
             setMessage('Successfully registered!');
@@ -35,7 +35,7 @@ const CarRentalPlatformFrontend = () => {
 
     return (
         <div>
-            <h1>Register to Car Rental Platform</h1>
+            <h1>Register to Car Rental Platform!</h1>
             <form onSubmit={register}>
                 <input
                     type="text"
