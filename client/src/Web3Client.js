@@ -1,5 +1,6 @@
 import Web3 from "web3";
-import RenterABI from "../artifacts/contracts/CarRentalPlatform.sol/CarRentalPlatform.json";
+import RenterABI from '.CarRentalPlatform.json';
+
 
 let selectedAccount;
 let renterContract;
