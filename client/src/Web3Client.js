@@ -1,36 +1,35 @@
 import Web3 from "web3";
-import RenterABI from "./ABI/RentalPlatform.json";
+import RenterABI from "../artifacts/contracts/CarRentalPlatform.sol/CarRentalPlatform.json";
 
 let selectedAccount;
 let renterContract;
-let isInitialized =false;
+let isInitialized = false;
 let renterContractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
-export const init = async()=>{
-    // congure contract
+export const init = async () => {
     let provider = window.ethereum;
 
-    if(typeof provider !== "undefined"){
-        provider
-        .request({method:"eth_requestAccounts"})
-        .then((accounts)=>{
-            selectedAccount = accounts[0];
-        }).catch((err)=>{
-            //console.log(err);
-            return;
-        });
+    if (!provider) {
+        console.error("Ethereum provider is not available");
+        return;
     }
 
-    window.ethereum.on("accountChanged", function(accounts){
-        selectedAccount=accounts[0];
-    });
+    try {
+        const accounts = await provider.request({ method: "eth_requestAccounts" });
+        selectedAccount = accounts[0];
 
-    const web3 = new Web3(provider);
-    const networkId = await web3.eth.net.getId();
-    renterContract = new web3.eth.Contract(RenterABI.abi, renterContractAddress);
-    isInitialized = true;
+        provider.on("accountsChanged", function (accounts) {
+            selectedAccount = accounts[0];
+        });
 
+        const web3 = new Web3(provider);
+
+        console.log("ABI: ", RenterABI.abi); // Checking if ABI is correctly loaded
+        renterContract = new web3.eth.Contract(RenterABI.abi, renterContractAddress);
+
+        isInitialized = true;
+        console.log("Initialization is successful");
+    } catch (error) {
+        console.error("Initialization failed", error);
+    }
 }
-
-
-
